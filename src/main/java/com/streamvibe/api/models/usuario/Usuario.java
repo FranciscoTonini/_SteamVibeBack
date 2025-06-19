@@ -1,18 +1,30 @@
 package com.streamvibe.api.models.usuario;
 
+import com.streamvibe.api.models.endereco.Endereco;
+
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class Usuario {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String nome;           
     private String dataNascimento; 
     private String email;          
     private String senha;          
-    private String cpf;            
+    private String cpf;
+    @Embedded   
+    private Endereco endereco;         
 
     public Usuario(DadosCadastroUsuario dados){
         this.nome = dados.nome();
@@ -20,5 +32,6 @@ public class Usuario {
         this.email = dados.email();
         this.senha = dados.senha();
         this.cpf = dados.cpf();
+        this.endereco = new Endereco(dados.endereco());
     }
 }
