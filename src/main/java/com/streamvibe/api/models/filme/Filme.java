@@ -22,6 +22,7 @@ public class Filme {
     private String diretor; 
     private String elenco;  
     private String sinopse; 
+    private Boolean ativo = true;
 
 
     public Filme(DadosCadastroFilme dados){
@@ -33,5 +34,19 @@ public class Filme {
         this.diretor = dados.diretor();
         this.elenco = dados.elenco();
         this.sinopse = dados.sinopse();
+    }
+    public void exclusaologica(){
+        this.ativo = false;
+    }
+    public void atualizaInfo(DadosAtualizadoFilme dados){
+        if (dados.nome() != null){
+            this.nome = dados.nome();
+        }
+        if (dados.diretor() != null){
+            this.diretor = dados.diretor();
+        }
+        if (dados.estudio() != null){
+            this.estudio = dados.estudio();
+        }
     }
 }
